@@ -1,0 +1,101 @@
+name: CI Guardrail Pipeline
+
+on:
+  push:
+    branches:
+      - main
+      - development
+  pull_request:
+    branches:
+      - main
+      - development
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - edited
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+# Explicit permissions required for PR inspection and security scanning
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  # ============================================================================
+  # 1. Engineering Guardrails Validation
+  # ============================================================================
+  engineering-guardrails:
+    name: Engineering Guardrails (Branch, PR, UI, Anti-Patterns)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Make Scripts Executable
+        run: chmod +x ./scripts/*.sh
+
+      - name: Run Guardrail Suite
+        env:
+          GITHUB_HEAD_REF: ${{ github.head_ref }}
+          GITHUB_BASE_REF: ${{ github.base_ref }}
+          GITHUB_PR_TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          ./scripts/check-guardrails.sh --all
+
+  # ============================================================================
+  # 2. Security & Secret Hygiene Guardrail
+  # ============================================================================
+  security-guardrails:
+    name: Security & Secret Scan
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install & Run Gitleaks Secret Detection
+        run: |
+          VERSION="8.24.3"
+          curl -sSL "https://github.com/gitleaks/gitleaks/releases/download/v${VERSION}/gitleaks_${VERSION}_linux_x64.tar.gz" | tar -xz -C /tmp gitleaks
+          /tmp/gitleaks detect --source=. --redact --verbose --exit-code=2
+
+  # ============================================================================
+  # 3. Quality, Test & Build Checks
+  # ============================================================================
+  quality-checks:
+    name: Lint, Test & Build
+    runs-on: ubuntu-latest
+    needs: [engineering-guardrails]
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: 1. Install Dependencies
+        run: |
+          npm ci
+
+      - name: 2. Validate Code Formatting & Linting
+        run: |
+          npm run lint
+          npm run prettier:verify
+
+      - name: 3. Run Automated Tests
+        run: |
+          npm test
+
