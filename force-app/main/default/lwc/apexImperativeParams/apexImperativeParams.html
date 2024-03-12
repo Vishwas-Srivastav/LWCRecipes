@@ -1,0 +1,23 @@
+<template>
+    <lightning-card title="Recipe: Imperative Apex with Params" icon-name="standard:apex">
+        <div class="slds-p-around_medium">
+            <div class="recipe-banner slds-m-bottom_medium">
+                <p class="recipe-title"><strong>Pattern: Imperative Apex Parameter Dispatch</strong></p>
+                <p class="recipe-description">
+                    Demonstrates triggering imperative Apex methods on-demand with custom parameters and handling promises.
+                </p>
+            </div>
+
+            <div class="slds-grid slds-gutters slds-m-bottom_medium">
+                <div class="slds-col slds-size_1-of-2">
+                    <lightning-input label="Page Size" type="number" value={pageSize} onchange={handleSizeChange}></lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+                    <lightning-input label="Page Number" type="number" value={pageNumber} onchange={handlePageChange}></lightning-input>
+                </div>
+            </div>
+
+            <lightning-button label="Fetch Accounts Imperatively" variant="brand" onclick={handleFetch}></lightning-button>
+        </div>
+    </lightning-card>
+</template>

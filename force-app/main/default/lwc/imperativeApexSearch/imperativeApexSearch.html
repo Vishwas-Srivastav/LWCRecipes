@@ -1,0 +1,76 @@
+<template>
+    <lightning-card title="Recipe: Imperative Apex Search with Debounce" icon-name="standard:contact">
+        <div class="slds-p-around_medium">
+            <div class="recipe-banner slds-m-bottom_medium">
+                <p class="recipe-title"><strong>Pattern: Debounced Imperative Apex Call</strong></p>
+                <p class="recipe-description">
+                    Demonstrates imperative Apex execution triggered by user input with a 300ms JS debounce timer,
+                    spinner feedback, exception parsing, and cache invalidation via notifyRecordUpdateAvailable.
+                </p>
+            </div>
+
+            <!-- Search Input -->
+            <div class="slds-m-bottom_medium">
+                <lightning-input
+                    type="search"
+                    label="Search Contacts"
+                    placeholder="Type name, title, or email..."
+                    value={searchKey}
+                    onchange={handleSearchChange}
+                ></lightning-input>
+            </div>
+
+            <!-- Loading Spinner -->
+            <template if:true={isLoading}>
+                <div class="spinner-container">
+                    <lightning-spinner alternative-text="Searching contacts..." size="medium"></lightning-spinner>
+                </div>
+            </template>
+
+            <!-- Error Banner -->
+            <template if:true={error}>
+                <div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error slds-m-bottom_medium" role="alert">
+                    <span class="slds-assistive-text">error</span>
+                    <h2>Error searching contacts: {errorMessage}</h2>
+                </div>
+            </template>
+
+            <!-- Results List -->
+            <template if:false={isLoading}>
+                <template if:true={hasContacts}>
+                    <div class="slds-grid slds-gutters slds-wrap">
+                        <template for:each={contacts} for:item="contact">
+                            <div key={contact.Id} class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-m-bottom_small">
+                                <div class="contact-card slds-p-around_small slds-box slds-box_x-small">
+                                    <div class="slds-media slds-media_center">
+                                        <div class="slds-media__figure">
+                                            <lightning-icon icon-name="standard:contact" size="small"></lightning-icon>
+                                        </div>
+                                        <div class="slds-media__body">
+                                            <p class="contact-name"><strong>{contact.Name}</strong></p>
+                                            <p class="slds-text-body_small slds-text-color_weak">{contact.Title}</p>
+                                            <p class="slds-text-body_small">{contact.Email}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </template>
+
+                <template if:false={hasContacts}>
+                    <template if:true={searchKey}>
+                        <p class="slds-text-color_weak slds-text-align_center slds-m-around_medium">
+                            No contacts match "{searchKey}".
+                        </p>
+                    </template>
+                    <template if:false={searchKey}>
+                        <p class="slds-text-color_weak slds-text-align_center slds-m-around_medium">
+                            Start typing in the search box above to query contacts.
+                        </p>
+                    </template>
+                </template>
+            </template>
+        </div>
+    </lightning-card>
+</template>
