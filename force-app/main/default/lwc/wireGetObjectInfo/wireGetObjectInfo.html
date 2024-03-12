@@ -1,0 +1,30 @@
+<template>
+    <lightning-card title="Recipe: Wire Get Object Info & Picklists" icon-name="standard:metadata">
+        <div class="slds-p-around_medium">
+            <div class="recipe-banner slds-m-bottom_medium">
+                <p class="recipe-title"><strong>Pattern: Dynamic Object Info & Picklist Values</strong></p>
+                <p class="recipe-description">
+                    Demonstrates fetching object metadata schema via @wire(getObjectInfo) and cascading picklist options via @wire(getPicklistValues).
+                </p>
+            </div>
+
+            <template if:true={objectInfo.data}>
+                <div class="slds-m-bottom_medium">
+                    <p><strong>Object Label:</strong> {objectLabel}</p>
+                    <p><strong>Default Record Type ID:</strong> {defaultRecordTypeId}</p>
+                </div>
+            </template>
+
+            <template if:true={industryOptions}>
+                <lightning-combobox
+                    name="industry"
+                    label="Account Industry"
+                    placeholder="Select Industry"
+                    options={industryOptions}
+                    value={selectedIndustry}
+                    onchange={handleIndustryChange}
+                ></lightning-combobox>
+            </template>
+        </div>
+    </lightning-card>
+</template>

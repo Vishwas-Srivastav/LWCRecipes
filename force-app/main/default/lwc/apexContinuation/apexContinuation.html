@@ -1,0 +1,24 @@
+<template>
+    <lightning-card title="Recipe: Apex Continuation Callouts" icon-name="standard:callout">
+        <div class="slds-p-around_medium">
+            <div class="recipe-banner slds-m-bottom_medium">
+                <p class="recipe-title"><strong>Pattern: Asynchronous Apex Continuation</strong></p>
+                <p class="recipe-description">
+                    Demonstrates asynchronous long-running external web service callouts without hitting Governor Limits using Apex Continuation.
+                </p>
+            </div>
+
+            <lightning-button
+                label="Execute Continuation Callout"
+                variant="brand"
+                onclick={handleExecuteCallout}
+            ></lightning-button>
+
+            <template if:true={response}>
+                <div class="slds-m-top_medium slds-box slds-box_x-small">
+                    <p><strong>Response Output:</strong> {response}</p>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

@@ -1,0 +1,20 @@
+<template>
+    <lightning-card title="Recipe: Wire Get Record" icon-name="standard:record">
+        <div class="slds-p-around_medium">
+            <div class="recipe-banner slds-m-bottom_medium">
+                <p class="recipe-title"><strong>Pattern: Reactive Record Field Wire Adapter</strong></p>
+                <p class="recipe-description">
+                    Demonstrates fetching single record fields using @wire(getRecord) and getFieldValue helper functions.
+                </p>
+            </div>
+
+            <template if:true={account}>
+                <div class="slds-box slds-box_x-small">
+                    <p><strong>Account Name:</strong> {name}</p>
+                    <p><strong>Phone:</strong> {phone}</p>
+                    <p><strong>Industry:</strong> {industry}</p>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>
