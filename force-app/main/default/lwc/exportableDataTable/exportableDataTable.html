@@ -1,0 +1,22 @@
+<template>
+    <lightning-card title="Recipe: CSV Export Datatable" icon-name="utility:download">
+        <div class="slds-p-around_medium">
+            <div class="recipe-banner slds-m-bottom_medium">
+                <p class="recipe-title"><strong>Pattern: Client-Side Data Export to CSV</strong></p>
+                <p class="recipe-description">
+                    Demonstrates converting component data structures into downloadable CSV files directly in browser memory.
+                </p>
+            </div>
+
+            <div class="slds-m-bottom_medium">
+                <lightning-button label="Export Records to CSV" variant="brand" icon-name="utility:download" onclick={handleExport}></lightning-button>
+            </div>
+
+            <lightning-datatable
+                key-field="id"
+                data={data}
+                columns={columns}
+            ></lightning-datatable>
+        </div>
+    </lightning-card>
+</template>

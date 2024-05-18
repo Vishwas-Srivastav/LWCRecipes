@@ -1,0 +1,18 @@
+<template>
+    <lightning-card title="Recipe: Tree Grid & Hierarchical Data" icon-name="standard:hierarchy">
+        <div class="slds-p-around_medium">
+            <div class="recipe-banner slds-m-bottom_medium">
+                <p class="recipe-title"><strong>Pattern: Tree Grid Hierarchical Record View</strong></p>
+                <p class="recipe-description">
+                    Demonstrates displaying parent-child nested records using lightning-tree-grid with expand/collapse logic.
+                </p>
+            </div>
+
+            <lightning-tree-grid
+                columns={columns}
+                data={treeData}
+                key-field="name"
+            ></lightning-tree-grid>
+        </div>
+    </lightning-card>
+</template>

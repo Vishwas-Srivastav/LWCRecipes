@@ -1,0 +1,22 @@
+.recipe-banner {
+    background-color: #f3f3f5;
+    border-left: 4px solid #0176d3;
+    padding: 12px;
+    border-radius: 4px;
+}
+
+.recipe-title {
+    color: #0176d3;
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.recipe-description {
+    color: #444;
+    font-size: 12px;
+}
+
+.spinner-container {
+    height: 120px;
+    position: relative;
+}
