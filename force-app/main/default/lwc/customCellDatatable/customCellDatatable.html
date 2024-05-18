@@ -1,0 +1,18 @@
+<template>
+    <lightning-card title="Recipe: Custom Cell Datatable" icon-name="standard:table">
+        <div class="slds-p-around_medium">
+            <div class="recipe-banner slds-m-bottom_medium">
+                <p class="recipe-title"><strong>Pattern: Datatable Custom Types & Formatting</strong></p>
+                <p class="recipe-description">
+                    Demonstrates customizing column cell types with URLs, buttons, badges, and currency formatting.
+                </p>
+            </div>
+
+            <lightning-datatable
+                key-field="id"
+                data={data}
+                columns={columns}
+            ></lightning-datatable>
+        </div>
+    </lightning-card>
+</template>

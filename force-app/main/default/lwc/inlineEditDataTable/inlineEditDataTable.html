@@ -1,0 +1,20 @@
+<template>
+    <lightning-card title="Recipe: Inline Edit Data Table" icon-name="standard:dataset">
+        <div class="slds-p-around_medium">
+            <div class="recipe-banner slds-m-bottom_medium">
+                <p class="recipe-title"><strong>Pattern: Datatable Inline Editing & Draft Values</strong></p>
+                <p class="recipe-description">
+                    Demonstrates inline cell editing, capturing draft values, and committing updates imperatively via Apex.
+                </p>
+            </div>
+
+            <lightning-datatable
+                key-field="Id"
+                data={opportunities}
+                columns={columns}
+                draft-values={draftValues}
+                onsave={handleSave}
+            ></lightning-datatable>
+        </div>
+    </lightning-card>
+</template>
