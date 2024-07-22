@@ -1,0 +1,24 @@
+<template>
+    <lightning-card title="Recipe: Custom Tabset Container" icon-name="standard:tabset">
+        <div class="slds-p-around_medium">
+            <div class="recipe-banner slds-m-bottom_medium">
+                <p class="recipe-title"><strong>Pattern: Tabbed Interface & Lazy Rendering</strong></p>
+                <p class="recipe-description">
+                    Demonstrates lightning-tabset container organizing features into modular tab views.
+                </p>
+            </div>
+
+            <lightning-tabset variant="scoped">
+                <lightning-tab label="Overview" icon-name="utility:summary">
+                    <p class="slds-p-around_small">Overview tab content containing summary analytics.</p>
+                </lightning-tab>
+                <lightning-tab label="Activity Timeline" icon-name="utility:event">
+                    <p class="slds-p-around_small">Activity timeline tab content displaying recent user actions.</p>
+                </lightning-tab>
+                <lightning-tab label="Settings" icon-name="utility:settings">
+                    <p class="slds-p-around_small">Settings tab content displaying component preferences.</p>
+                </lightning-tab>
+            </lightning-tabset>
+        </div>
+    </lightning-card>
+</template>

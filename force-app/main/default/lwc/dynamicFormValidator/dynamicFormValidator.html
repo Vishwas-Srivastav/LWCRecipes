@@ -1,0 +1,93 @@
+<template>
+    <lightning-card title="Recipe: Dynamic Form & Validation" icon-name="utility:form">
+        <div class="slds-p-around_medium">
+            <div class="recipe-banner slds-m-bottom_medium">
+                <p class="recipe-title"><strong>Pattern: Production Form & Custom Field Validation</strong></p>
+                <p class="recipe-description">
+                    Demonstrates dynamic form input validation using setCustomValidity, reportValidity,
+                    conditional field rendering, and validation error clearing.
+                </p>
+            </div>
+
+            <form class="slds-form slds-form_stacked" onsubmit={handleSubmit}>
+                <div class="slds-grid slds-gutters slds-wrap">
+                    <!-- Full Name -->
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-m-bottom_small">
+                        <lightning-input
+                            name="fullName"
+                            label="Full Name"
+                            value={formData.fullName}
+                            required
+                            onchange={handleInputChange}
+                        ></lightning-input>
+                    </div>
+
+                    <!-- Email Address -->
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-m-bottom_small">
+                        <lightning-input
+                            type="email"
+                            name="email"
+                            label="Email Address"
+                            value={formData.email}
+                            required
+                            onchange={handleInputChange}
+                        ></lightning-input>
+                    </div>
+
+                    <!-- Customer Category (Picklist) -->
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-m-bottom_small">
+                        <lightning-combobox
+                            name="category"
+                            label="Customer Category"
+                            value={formData.category}
+                            options={categoryOptions}
+                            required
+                            onchange={handleInputChange}
+                        ></lightning-combobox>
+                    </div>
+
+                    <!-- Annual Revenue (Conditional Requirement) -->
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-m-bottom_small">
+                        <lightning-input
+                            type="number"
+                            name="revenue"
+                            label="Annual Revenue ($)"
+                            value={formData.revenue}
+                            formatter="currency"
+                            onchange={handleInputChange}
+                        ></lightning-input>
+                    </div>
+
+                    <!-- Tax ID (Required only if Enterprise Category selected) -->
+                    <template if:true={isEnterpriseCategory}>
+                        <div class="slds-col slds-size_1-of-1 slds-m-bottom_small">
+                            <lightning-input
+                                name="taxId"
+                                label="Enterprise Tax ID / EIN"
+                                value={formData.taxId}
+                                placeholder="Format: XX-XXXXXXX"
+                                required
+                                onchange={handleInputChange}
+                            ></lightning-input>
+                        </div>
+                    </template>
+                </div>
+
+                <div class="slds-m-top_medium slds-text-align_right">
+                    <lightning-button
+                        label="Reset Form"
+                        variant="neutral"
+                        onclick={handleReset}
+                        class="slds-m-right_x-small"
+                    ></lightning-button>
+                    <lightning-button
+                        type="submit"
+                        label="Submit Lead"
+                        variant="brand"
+                        icon-name="utility:check"
+                    ></lightning-button>
+                </div>
+            </form>
+        </div>
+    </lightning-card>
+</template>

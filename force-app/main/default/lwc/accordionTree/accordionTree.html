@@ -1,0 +1,24 @@
+<template>
+    <lightning-card title="Recipe: Collapsible Accordion Tree" icon-name="utility:accordion">
+        <div class="slds-p-around_medium">
+            <div class="recipe-banner slds-m-bottom_medium">
+                <p class="recipe-title"><strong>Pattern: Collapsible Accordion Sections</strong></p>
+                <p class="recipe-description">
+                    Demonstrates lightning-accordion container for collapsing and expanding grouped content sections.
+                </p>
+            </div>
+
+            <lightning-accordion allow-multiple-sections-open active-section-name={activeSections}>
+                <lightning-accordion-section name="A" label="Account Information">
+                    <p>Account details section content.</p>
+                </lightning-accordion-section>
+                <lightning-accordion-section name="B" label="Related Contacts">
+                    <p>Related contacts section content.</p>
+                </lightning-accordion-section>
+                <lightning-accordion-section name="C" label="Open Opportunities">
+                    <p>Open opportunities section content.</p>
+                </lightning-accordion-section>
+            </lightning-accordion>
+        </div>
+    </lightning-card>
+</template>

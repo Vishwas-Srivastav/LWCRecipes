@@ -1,0 +1,49 @@
+<template>
+    <lightning-card title="Recipe: Custom Record Lookup Search" icon-name="standard:search">
+        <div class="slds-p-around_medium">
+            <div class="recipe-banner slds-m-bottom_medium">
+                <p class="recipe-title"><strong>Pattern: Reusable Lookup Component with Dropdown & Selection Pill</strong></p>
+                <p class="recipe-description">
+                    Demonstrates a custom search input lookup component emitting record selection events.
+                </p>
+            </div>
+
+            <template if:false={selectedRecord}>
+                <lightning-input
+                    type="search"
+                    label="Search Account Lookup"
+                    placeholder="Type account name..."
+                    value={searchKey}
+                    onchange={handleSearchChange}
+                ></lightning-input>
+
+                <template if:true={hasSearchResults}>
+                    <div class="slds-dropdown slds-dropdown_length-5 slds-dropdown_fluid slds-m-top_x-small">
+                        <ul class="slds-listbox slds-listbox_vertical" role="presentation">
+                            <template for:each={searchResults} for:item="item">
+                                <li key={item.Id} class="slds-listbox__item" onclick={handleSelectRecord} data-id={item.Id} data-name={item.Name}>
+                                    <div class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta">
+                                        <span class="slds-media__body">
+                                            <span class="slds-listbox__option-text slds-listbox__option-text_entity">{item.Name}</span>
+                                        </span>
+                                    </div>
+                                </li>
+                            </template>
+                        </ul>
+                    </div>
+                </template>
+            </template>
+
+            <template if:true={selectedRecord}>
+                <div class="slds-pill_container slds-m-top_small">
+                    <span class="slds-pill slds-pill_link">
+                        <span class="slds-pill__label">{selectedRecord.Name}</span>
+                        <button class="slds-button slds-button_icon slds-button_icon-bare slds-pill__remove" title="Remove" onclick={handleRemoveSelection}>
+                            <lightning-icon icon-name="utility:close" size="x-small"></lightning-icon>
+                        </button>
+                    </span>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

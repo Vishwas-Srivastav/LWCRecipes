@@ -1,0 +1,24 @@
+<template>
+    <lightning-card title="Recipe: Summary Metric Cards Dashboard" icon-name="standard:metrics">
+        <div class="slds-p-around_medium">
+            <div class="recipe-banner slds-m-bottom_medium">
+                <p class="recipe-title"><strong>Pattern: KPI Summary Metric Cards</strong></p>
+                <p class="recipe-description">
+                    Demonstrates rendering KPI dashboard cards with trend indicators and status colors.
+                </p>
+            </div>
+
+            <div class="slds-grid slds-gutters">
+                <template for:each={metrics} for:item="m">
+                    <div key={m.label} class="slds-col slds-size_1-of-3">
+                        <div class="slds-box slds-box_x-small slds-text-align_center">
+                            <p class="slds-text-title">{m.label}</p>
+                            <h2 class="slds-text-heading_large slds-m-vertical_x-small"><strong>{m.value}</strong></h2>
+                            <p class="slds-text-body_small">{m.trend}</p>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </lightning-card>
+</template>
