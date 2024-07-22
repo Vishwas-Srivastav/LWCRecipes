@@ -1,0 +1,21 @@
+<template>
+    <lightning-card title="Recipe: Custom Record Edit Form" icon-name="standard:record_update">
+        <div class="slds-p-around_medium">
+            <div class="recipe-banner slds-m-bottom_medium">
+                <p class="recipe-title"><strong>Pattern: Record Edit Form with Event Hooks</strong></p>
+                <p class="recipe-description">
+                    Demonstrates lightning-record-edit-form with onsubmit interceptors and custom success handling.
+                </p>
+            </div>
+
+            <lightning-record-edit-form object-api-name="Account" onsubmit={handleSubmit} onsuccess={handleSuccess}>
+                <lightning-input-field field-name="Name"></lightning-input-field>
+                <lightning-input-field field-name="Industry"></lightning-input-field>
+                <lightning-input-field field-name="Phone"></lightning-input-field>
+                <div class="slds-m-top_medium">
+                    <lightning-button type="submit" variant="brand" label="Save Record"></lightning-button>
+                </div>
+            </lightning-record-edit-form>
+        </div>
+    </lightning-card>
+</template>

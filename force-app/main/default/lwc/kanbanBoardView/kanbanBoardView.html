@@ -1,0 +1,28 @@
+<template>
+    <lightning-card title="Recipe: Kanban Board View" icon-name="standard:kanban">
+        <div class="slds-p-around_medium">
+            <div class="recipe-banner slds-m-bottom_medium">
+                <p class="recipe-title"><strong>Pattern: Interactive Column Kanban Board</strong></p>
+                <p class="recipe-description">
+                    Demonstrates rendering records in categorized status columns with interactive stage updates.
+                </p>
+            </div>
+
+            <div class="slds-grid slds-gutters">
+                <template for:each={columns} for:item="col">
+                    <div key={col.stage} class="slds-col slds-size_1-of-3">
+                        <div class="slds-box slds-box_x-small slds-theme_shade">
+                            <h3 class="slds-text-heading_small slds-m-bottom_small"><strong>{col.stage}</strong></h3>
+                            <template for:each={col.records} for:item="rec">
+                                <div key={rec.id} class="slds-card slds-p-around_small slds-m-bottom_small">
+                                    <p><strong>{rec.name}</strong></p>
+                                    <p class="slds-text-body_small">${rec.amount}</p>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </lightning-card>
+</template>

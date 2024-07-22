@@ -1,0 +1,52 @@
+<template>
+    <lightning-card title="Recipe: Multi-Step Form Wizard" icon-name="utility:steps">
+        <div class="slds-p-around_medium">
+            <div class="recipe-banner slds-m-bottom_medium">
+                <p class="recipe-title"><strong>Pattern: Multi-Step Progress Wizard</strong></p>
+                <p class="recipe-description">
+                    Demonstrates step-by-step form wizard navigation using lightning-progress-indicator and state persistence.
+                </p>
+            </div>
+
+            <!-- Progress Indicator -->
+            <lightning-progress-indicator current-step={currentStep} type="base" class="slds-m-bottom_medium">
+                <lightning-progress-step label="Account Details" value="1"></lightning-progress-step>
+                <lightning-progress-step label="Contact Info" value="2"></lightning-progress-step>
+                <lightning-progress-step label="Review & Submit" value="3"></lightning-progress-step>
+            </lightning-progress-indicator>
+
+            <!-- Step 1 -->
+            <template if:true={isStepOne}>
+                <div class="slds-box slds-box_x-small slds-m-bottom_medium">
+                    <lightning-input label="Account Name" value={wizardData.accountName} onchange={handleAccountNameChange}></lightning-input>
+                </div>
+            </template>
+
+            <!-- Step 2 -->
+            <template if:true={isStepTwo}>
+                <div class="slds-box slds-box_x-small slds-m-bottom_medium">
+                    <lightning-input label="Contact Email" value={wizardData.contactEmail} onchange={handleContactEmailChange}></lightning-input>
+                </div>
+            </template>
+
+            <!-- Step 3 -->
+            <template if:true={isStepThree}>
+                <div class="slds-box slds-box_x-small slds-m-bottom_medium">
+                    <p><strong>Account Name:</strong> {wizardData.accountName}</p>
+                    <p><strong>Contact Email:</strong> {wizardData.contactEmail}</p>
+                </div>
+            </template>
+
+            <!-- Navigation Controls -->
+            <div class="slds-grid slds-grid_align-spread">
+                <lightning-button label="Previous" disabled={isFirstStep} onclick={handlePrev}></lightning-button>
+                <template if:false={isLastStep}>
+                    <lightning-button label="Next" variant="brand" onclick={handleNext}></lightning-button>
+                </template>
+                <template if:true={isLastStep}>
+                    <lightning-button label="Submit" variant="success" onclick={handleSubmit}></lightning-button>
+                </template>
+            </div>
+        </div>
+    </lightning-card>
+</template>
