@@ -1,0 +1,35 @@
+<template>
+    <lightning-card title="Recipe: LMS Publisher" icon-name="utility:broadcast">
+        <div class="slds-p-around_medium">
+            <div class="recipe-banner slds-m-bottom_medium">
+                <p class="recipe-title"><strong>Pattern: Lightning Message Service (LMS) Publisher</strong></p>
+                <p class="recipe-description">
+                    Publishes a payload containing Record ID and Name over a shared Lightning Message Channel
+                    (RecordSelected) to decoupled subscriber components anywhere on the page.
+                </p>
+            </div>
+
+            <div class="slds-form slds-form_stacked slds-m-bottom_medium">
+                <lightning-input
+                    label="Record ID"
+                    value={recordId}
+                    placeholder="Enter Record ID (e.g. 001xx00000001)"
+                    onchange={handleRecordIdChange}
+                ></lightning-input>
+                <lightning-input
+                    label="Record Name"
+                    value={recordName}
+                    placeholder="Enter Record Name (e.g. Acme Corp)"
+                    onchange={handleRecordNameChange}
+                ></lightning-input>
+            </div>
+
+            <lightning-button
+                label="Publish Message"
+                variant="brand"
+                icon-name="utility:send"
+                onclick={handlePublish}
+            ></lightning-button>
+        </div>
+    </lightning-card>
+</template>

@@ -1,0 +1,34 @@
+<template>
+    <lightning-card title="Recipe: Dynamic Component Loader" icon-name="standard:component">
+        <div class="slds-p-around_medium">
+            <div class="recipe-banner slds-m-bottom_medium">
+                <p class="recipe-title"><strong>Pattern: Runtime Dynamic Component Loading</strong></p>
+                <p class="recipe-description">
+                    Demonstrates switching template content dynamically at runtime based on component state.
+                </p>
+            </div>
+
+            <div class="slds-m-bottom_medium">
+                <lightning-combobox
+                    name="view"
+                    label="Select Active View"
+                    value={selectedView}
+                    options={viewOptions}
+                    onchange={handleViewChange}
+                ></lightning-combobox>
+            </div>
+
+            <template if:true={isCardView}>
+                <div class="slds-box slds-theme_shade">
+                    <p>Card View Template Active</p>
+                </div>
+            </template>
+
+            <template if:true={isTableView}>
+                <div class="slds-box slds-theme_shade">
+                    <p>Table View Template Active</p>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

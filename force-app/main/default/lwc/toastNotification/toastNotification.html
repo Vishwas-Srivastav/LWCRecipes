@@ -1,0 +1,53 @@
+<template>
+    <lightning-card title="Recipe: Toast Notifications Utility" icon-name="utility:notification">
+        <div class="slds-p-around_medium">
+            <div class="recipe-banner slds-m-bottom_medium">
+                <p class="recipe-title"><strong>Pattern: Platform Toast Notifications</strong></p>
+                <p class="recipe-description">
+                    Demonstrates dispatching platform toast notifications with success, error, warning, and info variants,
+                    configurable message modes (dismissable, sticky, pester), and structured error messaging.
+                </p>
+            </div>
+
+            <!-- Variant Buttons -->
+            <div class="slds-grid slds-gutters slds-wrap slds-m-bottom_medium">
+                <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-4 slds-m-bottom_small">
+                    <lightning-button
+                        label="Success Toast"
+                        variant="success"
+                        icon-name="utility:success"
+                        onclick={showSuccessToast}
+                        class="slds-show_block"
+                    ></lightning-button>
+                </div>
+                <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-4 slds-m-bottom_small">
+                    <lightning-button
+                        label="Error Toast"
+                        variant="destructive"
+                        icon-name="utility:error"
+                        onclick={showErrorToast}
+                        class="slds-show_block"
+                    ></lightning-button>
+                </div>
+                <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-4 slds-m-bottom_small">
+                    <lightning-button
+                        label="Warning Toast"
+                        variant="warning"
+                        icon-name="utility:warning"
+                        onclick={showWarningToast}
+                        class="slds-show_block"
+                    ></lightning-button>
+                </div>
+                <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-4 slds-m-bottom_small">
+                    <lightning-button
+                        label="Info Toast"
+                        variant="brand"
+                        icon-name="utility:info"
+                        onclick={showInfoToast}
+                        class="slds-show_block"
+                    ></lightning-button>
+                </div>
+            </div>
+        </div>
+    </lightning-card>
+</template>

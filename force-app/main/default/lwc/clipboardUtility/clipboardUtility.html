@@ -1,0 +1,21 @@
+<template>
+    <lightning-card title="Recipe: Copy to Clipboard Utility" icon-name="utility:copy">
+        <div class="slds-p-around_medium">
+            <div class="recipe-banner slds-m-bottom_medium">
+                <p class="recipe-title"><strong>Pattern: One-Click Clipboard API</strong></p>
+                <p class="recipe-description">
+                    Demonstrates copying record fields or generated tokens to user system clipboard with feedback tooltips.
+                </p>
+            </div>
+
+            <div class="slds-grid slds-gutters slds-grid_vertical-align-center">
+                <div class="slds-col slds-size_3-of-4">
+                    <lightning-input label="Target Text" value={textToCopy} readonly></lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-4 slds-m-top_medium">
+                    <lightning-button label={buttonLabel} variant={buttonVariant} icon-name="utility:copy" onclick={handleCopy}></lightning-button>
+                </div>
+            </div>
+        </div>
+    </lightning-card>
+</template>

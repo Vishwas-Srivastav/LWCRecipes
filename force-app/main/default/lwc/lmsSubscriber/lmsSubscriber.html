@@ -1,0 +1,35 @@
+<template>
+    <lightning-card title="Recipe: LMS Subscriber" icon-name="utility:receive_call">
+        <div class="slds-p-around_medium">
+            <div class="recipe-banner slds-m-bottom_medium">
+                <p class="recipe-title"><strong>Pattern: Lightning Message Service (LMS) Subscriber</strong></p>
+                <p class="recipe-description">
+                    Subscribes to the RecordSelected message channel and displays incoming message payloads in real-time.
+                </p>
+            </div>
+
+            <template if:true={receivedPayload}>
+                <div class="slds-box slds-theme_success slds-theme_alert-texture slds-m-bottom_medium">
+                    <h3 class="slds-text-heading_small slds-m-bottom_x-small"><strong>Message Received!</strong></h3>
+                    <p><strong>Record ID:</strong> {receivedPayload.recordId}</p>
+                    <p><strong>Record Name:</strong> {receivedPayload.recordName}</p>
+                    <p><strong>Source:</strong> {receivedPayload.source}</p>
+                </div>
+            </template>
+
+            <template if:false={receivedPayload}>
+                <div class="slds-illustration slds-illustration_small">
+                    <p class="slds-text-color_weak">Awaiting LMS message publication...</p>
+                </div>
+            </template>
+
+            <div class="slds-m-top_medium">
+                <lightning-button
+                    label={subscriptionStatusLabel}
+                    variant={subscriptionStatusVariant}
+                    onclick={toggleSubscription}
+                ></lightning-button>
+            </div>
+        </div>
+    </lightning-card>
+</template>
