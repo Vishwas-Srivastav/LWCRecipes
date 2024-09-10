@@ -1,0 +1,19 @@
+<template>
+    <lightning-card title="Recipe: Singleton Global State Store" icon-name="standard:variable">
+        <div class="slds-p-around_medium">
+            <div class="recipe-banner slds-m-bottom_medium">
+                <p class="recipe-title"><strong>Pattern: Shared Reactive Singleton State Store</strong></p>
+                <p class="recipe-description">
+                    Demonstrates sharing state across decoupled LWCs using an observable JS store pattern.
+                </p>
+            </div>
+
+            <p class="slds-m-bottom_small"><strong>Store Counter Value:</strong> {counterValue}</p>
+
+            <lightning-button-group>
+                <lightning-button label="Increment Counter" variant="brand" onclick={handleIncrement}></lightning-button>
+                <lightning-button label="Reset Counter" variant="neutral" onclick={handleReset}></lightning-button>
+            </lightning-button-group>
+        </div>
+    </lightning-card>
+</template>

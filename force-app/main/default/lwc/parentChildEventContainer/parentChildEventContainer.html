@@ -1,0 +1,16 @@
+<template>
+    <lightning-card title="Recipe: Parent Child Event Container" icon-name="utility:hierarchy">
+        <div class="slds-p-around_medium">
+            <div class="recipe-banner slds-m-bottom_medium">
+                <p class="recipe-title"><strong>Pattern: Parent-Child Custom Event Propagation</strong></p>
+                <p class="recipe-description">
+                    Demonstrates CustomEvent dispatching with bubbles and composed options across DOM boundaries.
+                </p>
+            </div>
+
+            <p class="slds-m-bottom_small"><strong>Message Log:</strong> {lastEventMessage}</p>
+
+            <lightning-button label="Trigger Parent Event" variant="brand" onclick={handleTrigger}></lightning-button>
+        </div>
+    </lightning-card>
+</template>

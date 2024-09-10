@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningMessageChannel xmlns="http://soap.sforce.com/2006/04/metadata">
+    <masterLabel>RecordSelected</masterLabel>
+    <isExposed>true</isExposed>
+    <description>Lightning Message Channel used by LWC Recipes for publishing and subscribing to record selection events across components.</description>
+    <lightningMessageFields>
+        <fieldName>recordId</fieldName>
+        <description>The ID of the selected record.</description>
+    </lightningMessageFields>
+    <lightningMessageFields>
+        <fieldName>recordName</fieldName>
+        <description>The display name of the selected record.</description>
+    </lightningMessageFields>
+    <lightningMessageFields>
+        <fieldName>source</fieldName>
+        <description>Identifier of the component that published the message.</description>
+    </lightningMessageFields>
+</LightningMessageChannel>

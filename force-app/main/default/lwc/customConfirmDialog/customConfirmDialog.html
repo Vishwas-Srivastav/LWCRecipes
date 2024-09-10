@@ -1,0 +1,32 @@
+<template>
+    <lightning-card title="Recipe: Custom Confirmation Overlay" icon-name="utility:warning">
+        <div class="slds-p-around_medium">
+            <div class="recipe-banner slds-m-bottom_medium">
+                <p class="recipe-title"><strong>Pattern: Confirmation Dialog Substitute</strong></p>
+                <p class="recipe-description">
+                    Demonstrates modal confirmation overlays for critical actions with prompt and cancellation callbacks.
+                </p>
+            </div>
+
+            <lightning-button label="Delete Record (Confirm Prompt)" variant="destructive" onclick={handleShowConfirm}></lightning-button>
+
+            <template if:true={isConfirmOpen}>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+                <section role="dialog" class="slds-modal slds-fade-in-open slds-modal_small">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header">
+                            <h2 class="slds-modal__title">Confirm Deletion</h2>
+                        </header>
+                        <div class="slds-modal__content slds-p-around_medium">
+                            <p>Are you sure you want to permanently delete this record?</p>
+                        </div>
+                        <footer class="slds-modal__footer">
+                            <lightning-button label="Cancel" onclick={handleCancel} class="slds-m-right_x-small"></lightning-button>
+                            <lightning-button label="Confirm Delete" variant="destructive" onclick={handleConfirm}></lightning-button>
+                        </footer>
+                    </div>
+                </section>
+            </template>
+        </div>
+    </lightning-card>
+</template>
