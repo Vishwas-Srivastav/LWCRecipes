@@ -1,0 +1,22 @@
+<template>
+    <lightning-card title="Recipe: Interactive Analytics Chart" icon-name="utility:chart">
+        <div class="slds-p-around_medium">
+            <div class="recipe-banner slds-m-bottom_medium">
+                <p class="recipe-title"><strong>Pattern: Visual Data Charts & Progress Metrics</strong></p>
+                <p class="recipe-description">
+                    Demonstrates rendering visual progress bars and dynamic report breakdowns.
+                </p>
+            </div>
+
+            <template for:each={chartData} for:item="item">
+                <div key={item.label} class="slds-m-bottom_small">
+                    <div class="slds-grid slds-grid_align-spread slds-m-bottom_x-small">
+                        <span>{item.label}</span>
+                        <span>{item.value}%</span>
+                    </div>
+                    <lightning-progress-bar value={item.value} variant="circular"></lightning-progress-bar>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>
