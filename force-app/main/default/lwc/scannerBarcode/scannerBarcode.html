@@ -1,0 +1,20 @@
+<template>
+    <lightning-card title="Recipe: Barcode Scanner Integration" icon-name="standard:scan_card">
+        <div class="slds-p-around_medium">
+            <div class="recipe-banner slds-m-bottom_medium">
+                <p class="recipe-title"><strong>Pattern: Barcode & QR Code Scanner API</strong></p>
+                <p class="recipe-description">
+                    Demonstrates integrating mobile barcode scanning API capabilities for asset tracking.
+                </p>
+            </div>
+
+            <lightning-button label="Scan Barcode / QR Code" variant="brand" icon-name="utility:scan" onclick={handleScan}></lightning-button>
+
+            <template if:true={scannedValue}>
+                <div class="slds-m-top_medium slds-box slds-box_x-small">
+                    <p><strong>Scanned Barcode Value:</strong> {scannedValue}</p>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

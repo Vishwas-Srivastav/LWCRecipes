@@ -1,0 +1,23 @@
+<template>
+    <lightning-card title="Recipe: Progress Ring Countdown" icon-name="utility:clock">
+        <div class="slds-p-around_medium">
+            <div class="recipe-banner slds-m-bottom_medium">
+                <p class="recipe-title"><strong>Pattern: Animated Progress Ring Timer</strong></p>
+                <p class="recipe-description">
+                    Demonstrates lightning-progress-ring with timer state updates.
+                </p>
+            </div>
+
+            <div class="slds-grid slds-grid_vertical-align-center slds-m-bottom_medium">
+                <div class="slds-m-right_medium">
+                    <lightning-progress-ring value={progressValue} variant="active-step"></lightning-progress-ring>
+                </div>
+                <div>
+                    <p><strong>Timer Progress:</strong> {progressValue}%</p>
+                </div>
+            </div>
+
+            <lightning-button label="Reset Timer" variant="neutral" onclick={handleResetTimer}></lightning-button>
+        </div>
+    </lightning-card>
+</template>

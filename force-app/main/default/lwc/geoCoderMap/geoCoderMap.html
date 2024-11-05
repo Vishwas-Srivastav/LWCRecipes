@@ -1,0 +1,17 @@
+<template>
+    <lightning-card title="Recipe: Geocoder Map Markers" icon-name="standard:location">
+        <div class="slds-p-around_medium">
+            <div class="recipe-banner slds-m-bottom_medium">
+                <p class="recipe-title"><strong>Pattern: Interactive Map Address Markers</strong></p>
+                <p class="recipe-description">
+                    Demonstrates lightning-map for rendering interactive location markers with custom titles.
+                </p>
+            </div>
+
+            <lightning-map
+                map-markers={mapMarkers}
+                zoom-level="14"
+            ></lightning-map>
+        </div>
+    </lightning-card>
+</template>

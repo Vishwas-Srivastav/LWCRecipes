@@ -1,0 +1,28 @@
+<template>
+    <lightning-card title="Recipe: Activity Timeline Viewer" icon-name="standard:feed">
+        <div class="slds-p-around_medium">
+            <div class="recipe-banner slds-m-bottom_medium">
+                <p class="recipe-title"><strong>Pattern: Chronological Activity Timeline</strong></p>
+                <p class="recipe-description">
+                    Demonstrates displaying record event histories and task milestones in chronological timeline view.
+                </p>
+            </div>
+
+            <ul class="slds-timeline">
+                <template for:each={events} for:item="item">
+                    <li key={item.id} class="slds-m-bottom_small">
+                        <div class="slds-media">
+                            <div class="slds-media__figure">
+                                <lightning-icon icon-name={item.icon} size="small"></lightning-icon>
+                            </div>
+                            <div class="slds-media__body">
+                                <p><strong>{item.title}</strong> - <span class="slds-text-body_small">{item.date}</span></p>
+                                <p class="slds-text-body_small">{item.detail}</p>
+                            </div>
+                        </div>
+                    </li>
+                </template>
+            </ul>
+        </div>
+    </lightning-card>
+</template>
