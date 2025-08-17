@@ -25,7 +25,7 @@ The goal of this repo is to:
 1. Clone the repo:
 
    ```bash
-   git clone https://github.com/your-username/lwc-features-scenarios.git
+   git clone https://github.com/Vishwas-Srivastav/LWCRecipes
    ```
 
 2. Deploy the components to your Salesforce Org using **SFDX** or your preferred tool.
