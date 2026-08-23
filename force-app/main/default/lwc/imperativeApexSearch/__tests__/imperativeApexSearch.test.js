@@ -1,6 +1,5 @@
 import { createElement } from 'lwc';
 import ImperativeApexSearch from 'c/imperativeApexSearch';
-import searchContacts from '@salesforce/apex/ContactController.searchContacts';
 
 jest.mock(
     '@salesforce/apex/ContactController.searchContacts',

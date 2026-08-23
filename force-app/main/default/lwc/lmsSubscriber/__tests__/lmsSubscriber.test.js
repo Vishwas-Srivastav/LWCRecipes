@@ -1,6 +1,6 @@
 import { createElement } from 'lwc';
 import LmsSubscriber from 'c/lmsSubscriber';
-import { subscribe, unsubscribe } from 'lightning/messageService';
+import { subscribe } from 'lightning/messageService';
 
 jest.mock(
     'lightning/messageService',

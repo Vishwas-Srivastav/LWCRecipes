@@ -1,3 +1,4 @@
+/* eslint-disable @lwc/lwc/no-async-operation */
 import { LightningElement, track } from 'lwc';
 import searchContacts from '@salesforce/apex/ContactController.searchContacts';
 import { notifyRecordUpdateAvailable } from 'lightning/uiRecordApi';

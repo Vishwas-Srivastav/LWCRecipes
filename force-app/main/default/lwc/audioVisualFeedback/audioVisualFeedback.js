@@ -1,3 +1,4 @@
+/* eslint-disable @lwc/lwc/no-async-operation */
 import { LightningElement, track } from 'lwc';
 
 export default class AudioVisualFeedback extends LightningElement {
