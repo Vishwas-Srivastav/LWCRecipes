@@ -37,18 +37,16 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Make Scripts Executable
+        run: chmod +x ./scripts/*.sh
+
       - name: Run Guardrail Suite
         env:
           GITHUB_HEAD_REF: ${{ github.head_ref }}
           GITHUB_BASE_REF: ${{ github.base_ref }}
           GITHUB_PR_TITLE: ${{ github.event.pull_request.title }}
         run: |
-          if compgen -G "./scripts/*.sh" > /dev/null; then
-            chmod +x ./scripts/*.sh
-            ./scripts/check-guardrails.sh --all
-          else
-            echo "Local shell scripts omitted from remote repository. Guardrail check clean."
-          fi
+          ./scripts/check-guardrails.sh --all
 
   # ============================================================================
   # 2. Security & Secret Hygiene Guardrail
