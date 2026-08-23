@@ -2,9 +2,8 @@
  * @description Apex controller for Opportunity data operations used by LWC Kanban, Inline Edit, and Metric Card recipes.
  * @author Vishwas Srivastav
  * @group LWC Recipes
-**/
+ **/
 public with sharing class OpportunityController {
-
     @AuraEnabled(cacheable=true)
     public static List<Opportunity> getOpportunities() {
         return [

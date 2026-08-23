@@ -4,11 +4,11 @@
 
 We provide security updates and patches for the following versions:
 
-| Version | Supported          |
-| ------- | ------------------ |
-| `main`  | :white_check_mark: |
-| `<LATEST_RELEASE>` | :white_check_mark: |
-| `<PRIOR_RELEASES>` | :x:                |
+| Version  | Supported          |
+| -------- | ------------------ |
+| `main`   | :white_check_mark: |
+| `v1.0.0` | :white_check_mark: |
+| `v0.x`   | :x:                |
 
 ## Reporting a Vulnerability
 
@@ -16,10 +16,10 @@ If you discover a security vulnerability within this project, please follow resp
 
 ### Disclosure Process
 
-1. **Submit via GitHub Private Vulnerability Reporting** (Preferred if enabled on the repository under the **Security** tab).
-2. **Or Email:** Send details directly to `<SECURITY_CONTACT_EMAIL>`.
+1. **Submit via GitHub Private Vulnerability Reporting:** Submit advisories directly through [GitHub Security Advisories](https://github.com/Vishwas-Srivastav/LWCRecipes/security/advisories?state=Triage).
 
 Please include in your report:
+
 - A description of the vulnerability and its potential impact.
 - Step-by-step instructions to reproduce the issue (proof-of-concept script or steps).
 - Any suggested mitigations or patches if available.

@@ -33,17 +33,20 @@ Our guardrails operate across **four protective tiers**:
 Developers receive instant feedback on their local machines before changes are committed or pushed.
 
 ### Setup
+
 Run the setup script once:
+
 ```bash
 ./scripts/setup-guardrails.sh
 ```
+
 This configures Git to use [.githooks/](file:///Users/vishwassrivastav/Desktop/Work/Project%20Template/.githooks):
 
-| Hook | File | Action Enforced |
-| :--- | :--- | :--- |
-| **`commit-msg`** | [.githooks/commit-msg](file:///Users/vishwassrivastav/Desktop/Work/Project%20Template/.githooks/commit-msg) | Rejects commit messages that do not follow Conventional Commits (`feat:`, `fix:`, `docs:`, `chore:`, etc.). |
-| **`pre-commit`** | [.githooks/pre-commit](file:///Users/vishwassrivastav/Desktop/Work/Project%20Template/.githooks/pre-commit) | Blocks commits if real `.env` files, private keys (`.pem`, `.key`), or prohibited UI emoji icons are staged. |
-| **`pre-push`** | [.githooks/pre-push](file:///Users/vishwassrivastav/Desktop/Work/Project%20Template/.githooks/pre-push) | Rejects pushes from branches that violate the `<PROJECT_INITIALS>-<NUMBER>` (or `(feature\|bugfix\|chore)/<PROJECT_INITIALS>-<NUMBER>`) naming convention. |
+| Hook             | File                                                                                                        | Action Enforced                                                                                                                                            |
+| :--------------- | :---------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **`commit-msg`** | [.githooks/commit-msg](file:///Users/vishwassrivastav/Desktop/Work/Project%20Template/.githooks/commit-msg) | Rejects commit messages that do not follow Conventional Commits (`feat:`, `fix:`, `docs:`, `chore:`, etc.).                                                |
+| **`pre-commit`** | [.githooks/pre-commit](file:///Users/vishwassrivastav/Desktop/Work/Project%20Template/.githooks/pre-commit) | Blocks commits if real `.env` files, private keys (`.pem`, `.key`), or prohibited UI emoji icons are staged.                                               |
+| **`pre-push`**   | [.githooks/pre-push](file:///Users/vishwassrivastav/Desktop/Work/Project%20Template/.githooks/pre-push)     | Rejects pushes from branches that violate the `<PROJECT_INITIALS>-<NUMBER>` (or `(feature\|bugfix\|chore)/<PROJECT_INITIALS>-<NUMBER>`) naming convention. |
 
 ---
 
@@ -52,11 +55,13 @@ This configures Git to use [.githooks/](file:///Users/vishwassrivastav/Desktop/W
 Even if local hooks are bypassed, the automated CI pipeline in [.github/workflows/ci.yml](file:///Users/vishwassrivastav/Desktop/Work/Project%20Template/.github/workflows/ci.yml) executes on every PR and push.
 
 You can execute the entire suite locally at any time:
+
 ```bash
 ./scripts/check-guardrails.sh
 ```
 
 ### Automated Checks Performed:
+
 1. **Branch Naming:** Ensures branch matches `^((feature|bugfix|chore)/)?[a-zA-Z0-9]+-[0-9]+$` (e.g. `WSAI-01`, `UC-01`, `ML-01`, `feature/WSAI-01`).
 2. **PR Title & Commits:** Enforces Conventional Commit specifications.
 3. **Secret Hygiene:** Gitleaks scans git history; script verifies no `.env` or credentials are tracked.
@@ -71,6 +76,7 @@ You can execute the entire suite locally at any time:
 Platform rulesets prevent accidental circumvention of repository policies.
 
 Configured according to [docs/GITHUB_SETTINGS.md](file:///Users/vishwassrivastav/Desktop/Work/Project%20Template/docs/GITHUB_SETTINGS.md):
+
 - **Direct pushes to `main` disabled:** All changes must arrive via Pull Request.
 - **Required Status Checks:** `Engineering Guardrails`, `Security & Secret Scan`, and `Lint, Test & Build` must pass before merging.
 - **Block Force Pushes & Branch Deletions:** Preserves `main` commit integrity.
@@ -91,26 +97,29 @@ Human review is focused on high-value architecture, usability, and the **MVP Pri
 
 ## Quick Reference Cheat Sheet
 
-| Guardrail Rule | What is Enforced | How to Comply |
-| :--- | :--- | :--- |
-| **Branch Naming** | `<PROJECT_INITIALS>-<NUMBER>` | `git checkout -b PT-01` (or `feature/PT-01`) |
-| **Commit Messages** | Conventional Commits standard | `git commit -m "feat: description"` |
-| **Secrets & Keys** | Never commit `.env` or certificates | Keep credentials in `.env` (ignored by git) |
-| **UI Iconography** | SVG icons only, strictly no emojis | Use `<svg>` or icon components, never ⚙ / 🚀 |
-| **Direct Push** | Direct push to `main` blocked | Always open a Pull Request |
+| Guardrail Rule      | What is Enforced                    | How to Comply                                    |
+| :------------------ | :---------------------------------- | :----------------------------------------------- |
+| **Branch Naming**   | `<PROJECT_INITIALS>-<NUMBER>`       | `git checkout -b LWCR-01` (or `feature/LWCR-01`) |
+| **Commit Messages** | Conventional Commits standard       | `git commit -m "feat: description"`              |
+| **Secrets & Keys**  | Never commit `.env` or certificates | Keep credentials in `.env` (ignored by git)      |
+| **UI Iconography**  | SVG icons only, strictly no emojis  | Use `<svg>` or icon components, never ⚙ / 🚀     |
+| **Direct Push**     | Direct push to `main` blocked       | Always open a Pull Request                       |
 
 ---
 
 ## Troubleshooting Common Guardrail Errors
 
 ### 1. "Invalid commit message format"
+
 - **Cause:** Commit message did not start with a recognized Conventional Commit type.
 - **Fix:** Amend commit with `git commit --amend -m "feat: your concise summary"`.
 
 ### 2. "Branch name violates project conventions"
+
 - **Cause:** Branch does not match `<PROJECT_INITIALS>-<NUMBER>`.
 - **Fix:** Rename branch with `git branch -m PT-01`.
 
 ### 3. "Attempting to commit sensitive environment file"
+
 - **Cause:** A real `.env` file was staged.
 - **Fix:** Run `git reset HEAD .env` and ensure only `.env.example` is tracked.

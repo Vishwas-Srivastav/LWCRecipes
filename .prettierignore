@@ -1,0 +1,8 @@
+node_modules
+.sfdx
+.sf
+coverage
+dist
+package-lock.json
+scripts/*.sh
+*.html

@@ -6,20 +6,20 @@ import searchAccounts from '@salesforce/apex/AccountController.searchAccounts';
  * @description Column definitions for the Account datatable with action buttons.
  */
 const COLUMNS = [
-    { label: 'Account Name', fieldName: 'Name', type: 'text', sortable: true },
-    { label: 'Industry', fieldName: 'Industry', type: 'text', sortable: true },
-    { label: 'Annual Revenue', fieldName: 'AnnualRevenue', type: 'currency', sortable: true },
-    { label: 'Phone', fieldName: 'Phone', type: 'phone' },
-    { label: 'Rating', fieldName: 'Rating', type: 'text', sortable: true },
-    {
-        type: 'action',
-        typeAttributes: {
-            rowActions: [
-                { label: 'View Details', name: 'view_details' },
-                { label: 'Select Record', name: 'select_record' }
-            ]
-        }
+  { label: 'Account Name', fieldName: 'Name', type: 'text', sortable: true },
+  { label: 'Industry', fieldName: 'Industry', type: 'text', sortable: true },
+  { label: 'Annual Revenue', fieldName: 'AnnualRevenue', type: 'currency', sortable: true },
+  { label: 'Phone', fieldName: 'Phone', type: 'phone' },
+  { label: 'Rating', fieldName: 'Rating', type: 'text', sortable: true },
+  {
+    type: 'action',
+    typeAttributes: {
+      rowActions: [
+        { label: 'View Details', name: 'view_details' },
+        { label: 'Select Record', name: 'select_record' }
+      ]
     }
+  }
 ];
 
 /**
@@ -32,156 +32,156 @@ const COLUMNS = [
  * - Custom event generation on row selection
  */
 export default class PaginatedDataTable extends LightningElement {
-    columns = COLUMNS;
+  columns = COLUMNS;
 
-    @track searchKey = '';
-    @track pageNumber = 1;
-    @track pageSize = 5;
-    @track sortedBy = 'Name';
-    @track sortedDirection = 'asc';
+  @track searchKey = '';
+  @track pageNumber = 1;
+  @track pageSize = 5;
+  @track sortedBy = 'Name';
+  @track sortedDirection = 'asc';
 
-    totalRecords = 0;
-    wiredAccountsResult;
-    rawRecords = [];
-    pagedData = [];
-    isLoading = true;
+  totalRecords = 0;
+  wiredAccountsResult;
+  rawRecords = [];
+  pagedData = [];
+  isLoading = true;
 
-    pageSizeOptions = [
-        { label: '5 records', value: '5' },
-        { label: '10 records', value: '10' },
-        { label: '25 records', value: '25' }
-    ];
+  pageSizeOptions = [
+    { label: '5 records', value: '5' },
+    { label: '10 records', value: '10' },
+    { label: '25 records', value: '25' }
+  ];
 
-    get pageSizeStr() {
-        return String(this.pageSize);
+  get pageSizeStr() {
+    return String(this.pageSize);
+  }
+
+  /**
+   * Wire service to fetch accounts dynamically based on search key.
+   */
+  @wire(searchAccounts, { searchKey: '$searchKey' })
+  wiredAccounts(result) {
+    this.wiredAccountsResult = result;
+    this.isLoading = true;
+    if (result.data) {
+      this.rawRecords = result.data;
+      this.totalRecords = result.data.length;
+      this.pageNumber = 1;
+      this.processRecords();
+      this.isLoading = false;
+    } else if (result.error) {
+      console.error('Error fetching accounts:', result.error);
+      this.rawRecords = [];
+      this.pagedData = [];
+      this.totalRecords = 0;
+      this.isLoading = false;
+    }
+  }
+
+  /**
+   * Sorts and slices records for current page display.
+   */
+  processRecords() {
+    let sorted = [...this.rawRecords];
+    if (this.sortedBy) {
+      const reverse = this.sortedDirection === 'asc' ? 1 : -1;
+      sorted.sort((a, b) => {
+        const valA = a[this.sortedBy] ? a[this.sortedBy] : '';
+        const valB = b[this.sortedBy] ? b[this.sortedBy] : '';
+        return reverse * valA.localeCompare(valB, undefined, { numeric: true });
+      });
     }
 
-    /**
-     * Wire service to fetch accounts dynamically based on search key.
-     */
-    @wire(searchAccounts, { searchKey: '$searchKey' })
-    wiredAccounts(result) {
-        this.wiredAccountsResult = result;
-        this.isLoading = true;
-        if (result.data) {
-            this.rawRecords = result.data;
-            this.totalRecords = result.data.length;
-            this.pageNumber = 1;
-            this.processRecords();
-            this.isLoading = false;
-        } else if (result.error) {
-            console.error('Error fetching accounts:', result.error);
-            this.rawRecords = [];
-            this.pagedData = [];
-            this.totalRecords = 0;
-            this.isLoading = false;
-        }
-    }
+    const start = (this.pageNumber - 1) * this.pageSize;
+    const end = start + this.pageSize;
+    this.pagedData = sorted.slice(start, end);
+  }
 
-    /**
-     * Sorts and slices records for current page display.
-     */
-    processRecords() {
-        let sorted = [...this.rawRecords];
-        if (this.sortedBy) {
-            const reverse = this.sortedDirection === 'asc' ? 1 : -1;
-            sorted.sort((a, b) => {
-                const valA = a[this.sortedBy] ? a[this.sortedBy] : '';
-                const valB = b[this.sortedBy] ? b[this.sortedBy] : '';
-                return reverse * valA.localeCompare(valB, undefined, { numeric: true });
-            });
-        }
+  get hasRecords() {
+    return this.pagedData && this.pagedData.length > 0;
+  }
 
-        const start = (this.pageNumber - 1) * this.pageSize;
-        const end = start + this.pageSize;
-        this.pagedData = sorted.slice(start, end);
-    }
+  get totalPages() {
+    return Math.ceil(this.totalRecords / this.pageSize) || 1;
+  }
 
-    get hasRecords() {
-        return this.pagedData && this.pagedData.length > 0;
-    }
+  get isFirstPage() {
+    return this.pageNumber <= 1;
+  }
 
-    get totalPages() {
-        return Math.ceil(this.totalRecords / this.pageSize) || 1;
-    }
+  get isLastPage() {
+    return this.pageNumber >= this.totalPages;
+  }
 
-    get isFirstPage() {
-        return this.pageNumber <= 1;
-    }
+  handleSearchKeyChange(event) {
+    this.searchKey = event.target.value;
+  }
 
-    get isLastPage() {
-        return this.pageNumber >= this.totalPages;
-    }
+  handlePageSizeChange(event) {
+    this.pageSize = parseInt(event.detail.value, 10);
+    this.pageNumber = 1;
+    this.processRecords();
+  }
 
-    handleSearchKeyChange(event) {
-        this.searchKey = event.target.value;
-    }
+  handleSort(event) {
+    this.sortedBy = event.detail.fieldName;
+    this.sortedDirection = event.detail.sortDirection;
+    this.processRecords();
+  }
 
-    handlePageSizeChange(event) {
-        this.pageSize = parseInt(event.detail.value, 10);
-        this.pageNumber = 1;
-        this.processRecords();
-    }
+  handleFirstPage() {
+    this.pageNumber = 1;
+    this.processRecords();
+  }
 
-    handleSort(event) {
-        this.sortedBy = event.detail.fieldName;
-        this.sortedDirection = event.detail.sortDirection;
-        this.processRecords();
+  handlePreviousPage() {
+    if (this.pageNumber > 1) {
+      this.pageNumber -= 1;
+      this.processRecords();
     }
+  }
 
-    handleFirstPage() {
-        this.pageNumber = 1;
-        this.processRecords();
+  handleNextPage() {
+    if (this.pageNumber < this.totalPages) {
+      this.pageNumber += 1;
+      this.processRecords();
     }
+  }
 
-    handlePreviousPage() {
-        if (this.pageNumber > 1) {
-            this.pageNumber -= 1;
-            this.processRecords();
-        }
-    }
+  handleLastPage() {
+    this.pageNumber = this.totalPages;
+    this.processRecords();
+  }
 
-    handleNextPage() {
-        if (this.pageNumber < this.totalPages) {
-            this.pageNumber += 1;
-            this.processRecords();
-        }
-    }
+  handleRefresh() {
+    this.isLoading = true;
+    return refreshApex(this.wiredAccountsResult);
+  }
 
-    handleLastPage() {
-        this.pageNumber = this.totalPages;
-        this.processRecords();
+  handleRowAction(event) {
+    const actionName = event.detail.action.name;
+    const row = event.detail.row;
+    if (actionName === 'view_details' || actionName === 'select_record') {
+      this.dispatchEvent(
+        new CustomEvent('recordselect', {
+          detail: { recordId: row.Id, recordName: row.Name },
+          bubbles: true,
+          composed: true
+        })
+      );
     }
+  }
 
-    handleRefresh() {
-        this.isLoading = true;
-        return refreshApex(this.wiredAccountsResult);
+  handleRowSelection(event) {
+    const selectedRows = event.detail.selectedRows;
+    if (selectedRows && selectedRows.length > 0) {
+      this.dispatchEvent(
+        new CustomEvent('recordselect', {
+          detail: { recordId: selectedRows[0].Id, recordName: selectedRows[0].Name },
+          bubbles: true,
+          composed: true
+        })
+      );
     }
-
-    handleRowAction(event) {
-        const actionName = event.detail.action.name;
-        const row = event.detail.row;
-        if (actionName === 'view_details' || actionName === 'select_record') {
-            this.dispatchEvent(
-                new CustomEvent('recordselect', {
-                    detail: { recordId: row.Id, recordName: row.Name },
-                    bubbles: true,
-                    composed: true
-                })
-            );
-        }
-    }
-
-    handleRowSelection(event) {
-        const selectedRows = event.detail.selectedRows;
-        if (selectedRows && selectedRows.length > 0) {
-            this.dispatchEvent(
-                new CustomEvent('recordselect', {
-                    detail: { recordId: selectedRows[0].Id, recordName: selectedRows[0].Name },
-                    bubbles: true,
-                    composed: true
-                })
-            );
-        }
-    }
+  }
 }

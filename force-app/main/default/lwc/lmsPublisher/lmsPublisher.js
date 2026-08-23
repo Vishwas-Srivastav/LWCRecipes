@@ -10,26 +10,26 @@ import RECORD_SELECTED_CHANNEL from '@salesforce/messageChannel/RecordSelected__
  * - Decoupled messaging over custom Lightning Message Channel
  */
 export default class LmsPublisher extends LightningElement {
-    recordId = '001100000001ACME';
-    recordName = 'Acme Corporation';
+  recordId = '001100000001ACME';
+  recordName = 'Acme Corporation';
 
-    @wire(MessageContext)
-    messageContext;
+  @wire(MessageContext)
+  messageContext;
 
-    handleRecordIdChange(event) {
-        this.recordId = event.target.value;
-    }
+  handleRecordIdChange(event) {
+    this.recordId = event.target.value;
+  }
 
-    handleRecordNameChange(event) {
-        this.recordName = event.target.value;
-    }
+  handleRecordNameChange(event) {
+    this.recordName = event.target.value;
+  }
 
-    handlePublish() {
-        const payload = {
-            recordId: this.recordId,
-            recordName: this.recordName,
-            source: 'lmsPublisher'
-        };
-        publish(this.messageContext, RECORD_SELECTED_CHANNEL, payload);
-    }
+  handlePublish() {
+    const payload = {
+      recordId: this.recordId,
+      recordName: this.recordName,
+      source: 'lmsPublisher'
+    };
+    publish(this.messageContext, RECORD_SELECTED_CHANNEL, payload);
+  }
 }

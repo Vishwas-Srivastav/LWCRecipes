@@ -68,8 +68,3 @@ Thumbs.db
 *.tmp
 *.temp
 .tmp/
-
-# Local Shell Scripts (Excluded from Public Remote Repo)
-*.sh
-scripts/*.sh
-

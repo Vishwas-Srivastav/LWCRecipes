@@ -1,37 +1,37 @@
 import { createElement } from 'lwc';
 import LmsSubscriber from 'c/lmsSubscriber';
-import { subscribe, unsubscribe } from 'lightning/messageService';
+import { subscribe } from 'lightning/messageService';
 
 jest.mock(
-    'lightning/messageService',
-    () => {
-        return {
-            publish: jest.fn(),
-            subscribe: jest.fn(),
-            unsubscribe: jest.fn(),
-            APPLICATION_SCOPE: 'APPLICATION_SCOPE',
-            MessageContext: jest.fn()
-        };
-    },
-    { virtual: true }
+  'lightning/messageService',
+  () => {
+    return {
+      publish: jest.fn(),
+      subscribe: jest.fn(),
+      unsubscribe: jest.fn(),
+      APPLICATION_SCOPE: 'APPLICATION_SCOPE',
+      MessageContext: jest.fn()
+    };
+  },
+  { virtual: true }
 );
 
 describe('c-lms-subscriber', () => {
-    afterEach(() => {
-        while (document.body.firstChild) {
-            document.body.removeChild(document.body.firstChild);
-        }
-        jest.clearAllMocks();
+  afterEach(() => {
+    while (document.body.firstChild) {
+      document.body.removeChild(document.body.firstChild);
+    }
+    jest.clearAllMocks();
+  });
+
+  it('subscribes on connectedCallback', async () => {
+    const element = createElement('c-lms-subscriber', {
+      is: LmsSubscriber
     });
+    document.body.appendChild(element);
 
-    it('subscribes on connectedCallback', async () => {
-        const element = createElement('c-lms-subscriber', {
-            is: LmsSubscriber
-        });
-        document.body.appendChild(element);
+    await Promise.resolve();
 
-        await Promise.resolve();
-
-        expect(subscribe).toHaveBeenCalled();
-    });
+    expect(subscribe).toHaveBeenCalled();
+  });
 });

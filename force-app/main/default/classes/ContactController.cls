@@ -2,9 +2,8 @@
  * @description       : Apex controller for Contact search and dynamic query recipes.
  * @author            : Vishwas Srivastav
  * @group             : LWC Recipes
-**/
+ **/
 public with sharing class ContactController {
-
     /**
      * @description Imperatively searches contacts matching a search string.
      * @param searchKey The search term.

@@ -1,13 +1,13 @@
 import { LightningElement, track } from 'lwc';
 
 export default class GlobalStateStore extends LightningElement {
-    @track counterValue = 0;
+  @track counterValue = 0;
 
-    handleIncrement() {
-        this.counterValue += 1;
-    }
+  handleIncrement() {
+    this.counterValue += 1;
+  }
 
-    handleReset() {
-        this.counterValue = 0;
-    }
+  handleReset() {
+    this.counterValue = 0;
+  }
 }
