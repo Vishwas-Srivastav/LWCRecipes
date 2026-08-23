@@ -97,13 +97,13 @@ Human review is focused on high-value architecture, usability, and the **MVP Pri
 
 ## Quick Reference Cheat Sheet
 
-| Guardrail Rule      | What is Enforced                    | How to Comply                                |
-| :------------------ | :---------------------------------- | :------------------------------------------- |
-| **Branch Naming**   | `<PROJECT_INITIALS>-<NUMBER>`       | `git checkout -b PT-01` (or `feature/PT-01`) |
-| **Commit Messages** | Conventional Commits standard       | `git commit -m "feat: description"`          |
-| **Secrets & Keys**  | Never commit `.env` or certificates | Keep credentials in `.env` (ignored by git)  |
-| **UI Iconography**  | SVG icons only, strictly no emojis  | Use `<svg>` or icon components, never ⚙ / 🚀 |
-| **Direct Push**     | Direct push to `main` blocked       | Always open a Pull Request                   |
+| Guardrail Rule      | What is Enforced                    | How to Comply                                    |
+| :------------------ | :---------------------------------- | :----------------------------------------------- |
+| **Branch Naming**   | `<PROJECT_INITIALS>-<NUMBER>`       | `git checkout -b LWCR-01` (or `feature/LWCR-01`) |
+| **Commit Messages** | Conventional Commits standard       | `git commit -m "feat: description"`              |
+| **Secrets & Keys**  | Never commit `.env` or certificates | Keep credentials in `.env` (ignored by git)      |
+| **UI Iconography**  | SVG icons only, strictly no emojis  | Use `<svg>` or icon components, never ⚙ / 🚀     |
+| **Direct Push**     | Direct push to `main` blocked       | Always open a Pull Request                       |
 
 ---
 

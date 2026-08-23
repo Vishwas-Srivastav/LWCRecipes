@@ -58,6 +58,7 @@ _(Optionally prefixed by work type: `(feature|bugfix|chore)/<PROJECT_INITIALS>-<
 
 | Project Name    | Project Initials | Branch Name Example                |
 | :-------------- | :--------------- | :--------------------------------- |
+| **LWCRecipes**  | `LWCR`           | `LWCR-01` _(or `feature/LWCR-01`)_ |
 | **WebscribeAI** | `WSAI`           | `WSAI-01` _(or `feature/WSAI-01`)_ |
 | **Unclutter**   | `UC`             | `UC-01` _(or `bugfix/UC-01`)_      |
 | **Memory Lens** | `ML`             | `ML-01` _(or `chore/ML-01`)_       |
