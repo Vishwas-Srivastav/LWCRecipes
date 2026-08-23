@@ -24,15 +24,15 @@ Interface icons must be crisp, semantic, and render reliably across all operatin
 - **Use SVG Icons Exclusively:** Interface icons must be SVG assets (either inline SVGs, an SVG sprite, or a curated icon component).
 - **Strictly No Emojis as UI Icons:**
   - **NEVER** use emoji characters (e.g., :rocket: `🚀`, :gear: `⚙`, :x: `❌`, :star: `⭐`, :white_check_mark: `✅`, :bell: `🔔`, :pencil: `📝`) as substitutes for UI buttons, status indicators, or action icons.
-  - *Why?* Emojis render inconsistently across operating systems (Apple, Google, Microsoft, Linux), break visual cohesion, cannot be styled via CSS `currentColor`, and carry confusing accessibility semantics.
+  - _Why?_ Emojis render inconsistently across operating systems (Apple, Google, Microsoft, Linux), break visual cohesion, cannot be styled via CSS `currentColor`, and carry confusing accessibility semantics.
 - **Centralized Asset Management:** Use a single source of truth for icons (e.g., an icon component or `assets/icons/` folder) instead of scattering raw SVG markup across multiple files.
 - **Icon Sizing & Alignment:** Standardize on consistent viewBoxes (e.g., `24x24` or `20x20`) and ensure optical alignment with adjacent text.
 
-| Correct Practice | Prohibited Practice |
-| :--- | :--- |
-| `<Icon name="settings" size={20} />` (renders SVG) | `<span>⚙ Settings</span>` |
+| Correct Practice                                        | Prohibited Practice         |
+| :------------------------------------------------------ | :-------------------------- |
+| `<Icon name="settings" size={20} />` (renders SVG)      | `<span>⚙ Settings</span>`   |
 | `<Icon name="check-circle" className="text-success" />` | `<span>✅ Completed</span>` |
-| `<Icon name="trash" aria-label="Delete" />` | `<button>🗑</button>` |
+| `<Icon name="trash" aria-label="Delete" />`             | `<button>🗑</button>`        |
 
 ---
 

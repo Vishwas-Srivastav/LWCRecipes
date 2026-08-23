@@ -31,11 +31,13 @@ Auto-Synced to 'main' (Production)
 ## 2. Setting Up Local Guardrails
 
 Before making your first commit, enable local Git hooks:
+
 ```bash
 ./scripts/setup-guardrails.sh
 ```
 
 You can run the full guardrail validation suite locally at any time:
+
 ```bash
 ./scripts/check-guardrails.sh
 ```
@@ -47,16 +49,18 @@ You can run the full guardrail validation suite locally at any time:
 ### Branch Naming Convention
 
 Branches are named using the **Project Initials** and a traceable work item **Number**:
+
 ```text
 <PROJECT_INITIALS>-<NUMBER>
 ```
-*(Optionally prefixed by work type: `(feature|bugfix|chore)/<PROJECT_INITIALS>-<NUMBER>`)*
 
-| Project Name | Project Initials | Branch Name Example |
-| :--- | :--- | :--- |
-| **WebscribeAI** | `WSAI` | `WSAI-01` *(or `feature/WSAI-01`)* |
-| **Unclutter** | `UC` | `UC-01` *(or `bugfix/UC-01`)* |
-| **Memory Lens** | `ML` | `ML-01` *(or `chore/ML-01`)* |
+_(Optionally prefixed by work type: `(feature|bugfix|chore)/<PROJECT_INITIALS>-<NUMBER>`)_
+
+| Project Name    | Project Initials | Branch Name Example                |
+| :-------------- | :--------------- | :--------------------------------- |
+| **WebscribeAI** | `WSAI`           | `WSAI-01` _(or `feature/WSAI-01`)_ |
+| **Unclutter**   | `UC`             | `UC-01` _(or `bugfix/UC-01`)_      |
+| **Memory Lens** | `ML`             | `ML-01` _(or `chore/ML-01`)_       |
 
 ### Rules for Branches
 
@@ -74,11 +78,13 @@ Branches are named using the **Project Initials** and a traceable work item **Nu
 We use a lightweight **Conventional Commits** style to ensure a clean, readable project history.
 
 ### Commit Format
+
 ```text
 <type>(<optional scope>): <imperative description>
 ```
 
 ### Common Types
+
 - `feat:` A new feature or capability (e.g., `feat: add article extraction`)
 - `fix:` A bug fix (e.g., `fix: handle empty article content`)
 - `docs:` Documentation-only changes (e.g., `docs: update setup instructions`)
@@ -87,6 +93,7 @@ We use a lightweight **Conventional Commits** style to ensure a clean, readable 
 - `chore:` Maintenance, build scripts, dependency updates (e.g., `chore: update dependencies`)
 
 ### Commit Guidelines
+
 - Use the imperative mood in descriptions ("add feature" instead of "added feature" or "adds feature").
 - Keep the first line concise (under 72 characters).
 - Enforced locally via `.githooks/commit-msg` and in CI.
@@ -116,6 +123,7 @@ We use a lightweight **Conventional Commits** style to ensure a clean, readable 
 ## 7. UI / UX Standards
 
 If your change involves a user interface:
+
 - **Follow Guidelines:** Review [docs/UI_GUIDELINES.md](file:///Users/vishwassrivastav/Desktop/Work/Project%20Template/docs/UI_GUIDELINES.md).
 - **SVG Icons Only:** Interface icons must be SVG assets.
 - **No Emojis as UI Icons:** Never use emojis (e.g., :rocket: `🚀`, :gear: `⚙`, :x: `❌`, :star: `⭐`) as interface icons or buttons. (Enforced by pre-commit hook and CI script).
@@ -129,6 +137,7 @@ If your change involves a user interface:
 > **"MVP means minimum viable product, not minimum quality."**
 
 When building initial features:
+
 - **Prioritize:** Core user journey, reliability, maintainability, tests, and clean presentation.
 - **Defer:** Over-engineered plugin architectures, multi-tenant complexity, oversized design frameworks, and unrequested customization options.
 - Simple, solid code is always better than complex, unfinished architecture.

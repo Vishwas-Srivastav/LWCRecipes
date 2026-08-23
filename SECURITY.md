@@ -4,9 +4,9 @@
 
 We provide security updates and patches for the following versions:
 
-| Version | Supported          |
-| ------- | ------------------ |
-| `main`  | :white_check_mark: |
+| Version            | Supported          |
+| ------------------ | ------------------ |
+| `main`             | :white_check_mark: |
 | `<LATEST_RELEASE>` | :white_check_mark: |
 | `<PRIOR_RELEASES>` | :x:                |
 
@@ -20,6 +20,7 @@ If you discover a security vulnerability within this project, please follow resp
 2. **Or Email:** Send details directly to `<SECURITY_CONTACT_EMAIL>`.
 
 Please include in your report:
+
 - A description of the vulnerability and its potential impact.
 - Step-by-step instructions to reproduce the issue (proof-of-concept script or steps).
 - Any suggested mitigations or patches if available.

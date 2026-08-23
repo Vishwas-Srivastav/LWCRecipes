@@ -3,9 +3,8 @@
  *                      Demonstrates cacheable Apex queries for @wire and imperative Apex calls.
  * @author            : Vishwas Srivastav
  * @group             : LWC Recipes
-**/
+ **/
 public with sharing class AccountController {
-
     /**
      * @description Fetches a list of Accounts with optional limit and offset for pagination.
      * @param pageSize Number of records to return.

@@ -1,20 +1,20 @@
 .contact-card {
-    background-color: #ffffff;
-    border: 1px solid #dddbda;
-    border-radius: 4px;
-    transition: box-shadow 0.2s ease-in-out;
+  background-color: #ffffff;
+  border: 1px solid #dddbda;
+  border-radius: 4px;
+  transition: box-shadow 0.2s ease-in-out;
 }
 
 .contact-card:hover {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .contact-name {
-    color: #0176d3;
-    font-size: 14px;
+  color: #0176d3;
+  font-size: 14px;
 }
 
 .spinner-container {
-    height: 80px;
-    position: relative;
+  height: 80px;
+  position: relative;
 }

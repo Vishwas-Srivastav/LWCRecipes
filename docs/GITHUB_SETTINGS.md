@@ -3,6 +3,7 @@
 This document outlines the recommended GitHub repository settings to configure after creating a new repository from this template.
 
 > **Important Distinction:**
+>
 > - **In-Repository Files (Automated):** Workflows (`.github/workflows/ci.yml`), PR/Issue templates, `.editorconfig`, and `.gitignore` are tracked in code and take effect immediately.
 > - **GitHub Platform Settings (Manual Configuration):** Branch protection, rulesets, template repository flags, and merge automation are repository-level settings managed through the GitHub UI or API.
 
@@ -19,6 +20,7 @@ This document outlines the recommended GitHub repository settings to configure a
 ## 2. Branch Protection & Rulesets (`development` & `main`)
 
 ### Ruleset A: Protect `development` (Active Development Branch)
+
 1. Navigate to **Settings** > **Rules** > **Rulesets** > **New ruleset**.
 2. **Ruleset Name:** `Protect development`
 3. **Target Branches:** `development`
@@ -28,6 +30,7 @@ This document outlines the recommended GitHub repository settings to configure a
    - **Block force pushes** & **Restrict deletions**.
 
 ### Ruleset B: Protect `main` (Production Branch)
+
 - `main` is automatically updated whenever a PR merges into `development` via [.github/workflows/sync-main.yml](../.github/workflows/sync-main.yml).
 - Ensure direct manual pushes to `main` are disabled.
 

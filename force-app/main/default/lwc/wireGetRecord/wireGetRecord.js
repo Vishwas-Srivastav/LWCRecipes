@@ -11,20 +11,20 @@ const FIELDS = [NAME_FIELD, PHONE_FIELD, INDUSTRY_FIELD];
  * Demonstrates reactive field extraction using getFieldValue.
  */
 export default class WireGetRecord extends LightningElement {
-    @api recordId;
+  @api recordId;
 
-    @wire(getRecord, { recordId: '$recordId', fields: FIELDS })
-    account;
+  @wire(getRecord, { recordId: '$recordId', fields: FIELDS })
+  account;
 
-    get name() {
-        return getFieldValue(this.account.data, NAME_FIELD);
-    }
+  get name() {
+    return getFieldValue(this.account.data, NAME_FIELD);
+  }
 
-    get phone() {
-        return getFieldValue(this.account.data, PHONE_FIELD);
-    }
+  get phone() {
+    return getFieldValue(this.account.data, PHONE_FIELD);
+  }
 
-    get industry() {
-        return getFieldValue(this.account.data, INDUSTRY_FIELD);
-    }
+  get industry() {
+    return getFieldValue(this.account.data, INDUSTRY_FIELD);
+  }
 }
